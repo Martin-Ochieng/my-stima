@@ -1,0 +1,86 @@
+.meters-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  height: 100vh;  /* Ensure the container takes the full height of the screen */
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+}
+
+.meters-list {
+  display: flex;
+  flex-direction: column;  /* Stack the meter cards vertically */
+  align-items: center; /* Center the meter cards horizontally */
+  justify-content: center;
+  width: 100%;  /* Ensure it takes full width */
+  max-width: 100%;  /* Optional: Limit the width of the meter list */
+  gap: 20px;  /* Space between meter cards */
+}
+
+.meter-card {
+  width: 100%;  /* Ensure the card takes the full width available */
+  max-width: 600px;  /* Optional: Limit the card width to avoid stretch */
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;  /* Center the text inside the card */
+}
+
+.meter-info {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.meter-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.meter-number, .meter-type {
+  font-size: 14px;
+}
+
+.meter-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* Center the buttons inside the card */
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;  /* Enable flexbox */
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.add-meter-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-meter-button button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;  /* Enable flexbox */
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+}
+
+.add-meter-button button:hover {
+  background-color: #45a049;
+}

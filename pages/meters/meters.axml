@@ -1,0 +1,24 @@
+<view class="meters-page">
+  <view class="meters-list">
+    <block a:for="{{ meters }}" a:key="id">
+      <view class="meter-card">
+        <view class="meter-info">
+          <view class="meter-name">{{ item.name }}</view>
+          <view class="meter-number">#{{ item.number }}</view>
+          <view class="meter-type">{{ item.type }}</view>
+        </view>
+        <view class="meter-buttons">
+          <button onTap="goToMeter" data-number="{{ item.number }}">Show</button>
+          <button onTap="goToConsumption" data-number="{{ item.number }}">Pay</button>
+          <!-- Delete Button -->
+          <button onTap="deleteMeter" data-id="{{ item.id }}">Delete</button>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- Add Meter Button -->
+  <view class="add-meter-button">
+    <button onTap="addMeter">Add Meter</button>
+  </view>
+</view>

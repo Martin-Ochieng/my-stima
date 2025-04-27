@@ -1,0 +1,28 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f0f2f5;
+  width: 100%;
+}
+
+.welcome-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  color: #333;
+}
+
+.navigate-button {
+  width: 60%;
+  height: 80rpx;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 12rpx;
+  font-size: 18px;
+  text-align: center;
+  line-height: 80rpx;
+}

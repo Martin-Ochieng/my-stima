@@ -1,0 +1,13 @@
+<view class="consumption-page">
+  <view class="current-bill">
+    <text>Current Month Bill: $45.00</text>
+  </view>
+
+  <view class="payment-details">
+    <!-- Input for amount -->
+    <input name="amount" type="number" placeholder="Enter amount" onInput="updateAmount"/>
+  </view>
+
+  <!-- Submit button for the form -->
+  <button onTap="makePayBillPayment">Pay Bill</button>
+</view>

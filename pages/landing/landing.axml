@@ -1,0 +1,4 @@
+<view class="landing-page">
+  <view class="welcome-text">Welcome to My Stima⚡</view>
+  <button class="navigate-button" onTap="goToMeters">View My Meters</button>
+</view>

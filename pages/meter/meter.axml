@@ -1,0 +1,5 @@
+<view class="meter-page">
+  <view class="iframe-wrapper">
+    <web-view src="{{ iframeUrl }}" class="iframe"></web-view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/landing/landing",
+    "pages/meters/meters",
+    "pages/meter/meter",
+    "pages/addMeter/addMeter",
+    "pages/consumption/consumption"
+  ],
+  "window": {
+    "defaultTitle": "My Stima"
+  }
+}
