@@ -1,45 +1,58 @@
 .consumption-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  justify-content: center; /* vertically center */
+  align-items: center;     /* horizontally center */
+  padding: 24rpx;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.current-bill {
-  font-size: 18px;
-  margin-bottom: 20px;
+.consumption-card {
+  width: 100%;
+  max-width: 600rpx;
+  padding: 24rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 32rpx;
 }
 
 .payment-details {
+  width: 100%;
+  max-width: 600rpx;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
 }
 
 input[type="number"] {
-  width: 80%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: white;  /* Ensure the background is visible */
+  width: 100%;
+  padding: 20rpx;
+  font-size: 28rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #f0f2f5;
+  background-color: #f0f2f5;
 }
 
 button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  width: 100%;
+  max-width: 600rpx;
+  background-color: #108ee9;
+  color: #f0f2f5;
+  padding: 20rpx;
+  font-size: 30rpx;
+  border-radius: 12rpx;
   border: none;
   cursor: pointer;
-  
-  /* Apply flexbox to center the text */
   display: flex;
-  justify-content: center;  /* Horizontally center the text */
-  align-items: center;  /* Vertically center the text */
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #0a7acc;
 }

@@ -1,13 +1,35 @@
 <view class="consumption-page">
-  <view class="current-bill">
-    <text>Current Month Bill: $45.00</text>
+  <!-- Bill Summary Card -->
+  <view class="consumption-card">
+    <view style="font-size: 32rpx; font-weight: bold; margin-bottom: 16rpx; color: #333;">
+      Electricity Bill Summary
+    </view>
+    <view style="margin-bottom: 12rpx; font-size: 28rpx; color: #444;">
+      <text>Current Month Bill: </text><text style="font-weight: bold; color: #108ee9;">KES {{billAmount}}</text>
+    </view>
+    <view style="margin-bottom: 12rpx; font-size: 26rpx; color: #666;">
+      <text>Current Units: </text><text style="font-weight: bold;">{{meter.units}} kWh</text>
+    </view>
+    <view style="margin-bottom: 12rpx; font-size: 26rpx; color: #666;">
+      <text>Units Bought: </text><text style="font-weight: bold; color: #4CAF50;">{{unitsBought}} kWh</text>
+    </view>
+    <view style="font-size: 26rpx; color: #666;">
+      <text>Tariff: </text><text style="font-weight: bold; color: #108ee9;">KES {{tariff}} per kWh</text>
+    </view>
   </view>
 
+  <!-- Payment Input -->
   <view class="payment-details">
-    <!-- Input for amount -->
-    <input name="amount" type="number" placeholder="Enter amount" onInput="updateAmount"/>
+    <input 
+      name="amount"
+      type="number"
+      placeholder="Enter amount to pay"
+      onInput="updateAmount"
+    />
   </view>
 
-  <!-- Submit button for the form -->
-  <button onTap="makePayBillPayment">Pay Bill</button>
+  <!-- Submit Button -->
+  <button onTap="makePayBillPayment">
+    Pay Bill
+  </button>
 </view>

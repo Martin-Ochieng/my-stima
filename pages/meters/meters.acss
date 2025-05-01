@@ -2,61 +2,75 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertically center the content */
-  align-items: center; /* Horizontally center the content */
-  height: 100vh;  /* Ensure the container takes the full height of the screen */
-  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #f0f2f5;
+  min-height: 100vh; /* Ensure it takes up full viewport height */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  padding-top: 60px; /* Extra space at the top for visibility */
 }
 
 .meters-list {
   display: flex;
-  flex-direction: column;  /* Stack the meter cards vertically */
-  align-items: center; /* Center the meter cards horizontally */
-  justify-content: center;
-  width: 100%;  /* Ensure it takes full width */
-  max-width: 100%;  /* Optional: Limit the width of the meter list */
-  gap: 20px;  /* Space between meter cards */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  margin-top: 5px; /* Adds space between the top and the first meter card */
 }
 
 .meter-card {
-  width: 100%;  /* Ensure the card takes the full width available */
-  max-width: 600px;  /* Optional: Limit the card width to avoid stretch */
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;  /* Center the text inside the card */
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #ffffff; /* Slightly darker than #f0f2f5 */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
 }
 
 .meter-info {
-  margin-bottom: 10px;
-  color: #333;
+  margin-bottom: 12px;
+  color: #222;
 }
 
 .meter-name {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.meter-number, .meter-type {
+.meter-number,
+.meter-type,
+.meter-units {
   font-size: 14px;
+  margin-top: 4px;
+  color: #666;
 }
 
 .meter-buttons {
   display: flex;
   gap: 10px;
-  justify-content: center; /* Center the buttons inside the card */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 button {
   background-color: #4CAF50;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  display: flex;  /* Enable flexbox */
-  justify-content: center; /* Center text horizontally */
-  align-items: center; /* Center text vertically */
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+
+  /* Center text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;  /* fallback for inline-block buttons */
 }
 
 button:hover {
@@ -64,23 +78,16 @@ button:hover {
 }
 
 .add-meter-button {
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .add-meter-button button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;  /* Enable flexbox */
-  justify-content: center; /* Center text horizontally */
-  align-items: center; /* Center text vertically */
+  background-color: #2196F3;
 }
 
 .add-meter-button button:hover {
-  background-color: #45a049;
+  background-color: #1976D2;
 }

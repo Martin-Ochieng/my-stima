@@ -1,9 +1,7 @@
 <view class="add-meter-page">
- 
+  <view class="add-meter-card">
     <input type="text" name="meterName" placeholder="Enter Meter Name" onInput="updateMeterName"/>
     <input type="number" name="meterNumber" placeholder="Enter Meter Number" onInput="updateMeterNumber"/>
-    
-
-
-  <button onTap="saveMeter">Save Meter</button>
+    <button onTap="saveMeter">Save Meter</button>
+  </view>
 </view>

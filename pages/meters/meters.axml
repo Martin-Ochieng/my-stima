@@ -4,12 +4,21 @@
       <view class="meter-card">
         <view class="meter-info">
           <view class="meter-name">{{ item.name }}</view>
-          <view class="meter-number">#{{ item.number }}</view>
+          <view class="meter-number">
+            <!-- Use the icon with a margin-right for spacing -->
+            <icon type="success" size="10" color="#28a745" style="margin-right: 8px;" />
+            {{ item.number }}
+          </view>
           <view class="meter-type">{{ item.type }}</view>
+          <view class="meter-units">Remaining Units: {{ item.units }} kWh</view>
         </view>
         <view class="meter-buttons">
-          <button onTap="goToMeter" data-number="{{ item.number }}">Show</button>
-          <button onTap="goToConsumption" data-number="{{ item.number }}">Pay</button>
+          <!-- Show Meter button -->
+          <button onTap="goToMeter" data-id="{{ item.id }}" data-name="{{ item.name }}" data-type="{{ item.type }}" data-units="{{ item.units }}" data-number="{{ item.number }}">Show</button>
+
+          <!-- Pay Bill button -->
+          <button onTap="goToConsumption" data-id="{{ item.id }}" data-name="{{ item.name }}" data-type="{{ item.type }}" data-units="{{ item.units }}" data-number="{{ item.number }}">Pay</button>
+
           <!-- Delete Button -->
           <button onTap="deleteMeter" data-id="{{ item.id }}">Delete</button>
         </view>

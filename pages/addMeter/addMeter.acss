@@ -1,14 +1,25 @@
 .add-meter-page {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center */
   padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.form {
+
+.add-meter-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #ffffff; /* Card background */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 16px;
 }
 
 input {
@@ -28,6 +39,7 @@ input {
   display: flex;
   align-items: center;
 }
+
 button {
   background-color: #4CAF50;
   color: white;
@@ -36,11 +48,9 @@ button {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  
-  /* Apply flexbox to center the text */
   display: flex;
-  justify-content: center;  /* Horizontally center the text */
-  align-items: center;  /* Vertically center the text */
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover {
