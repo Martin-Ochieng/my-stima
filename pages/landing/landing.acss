@@ -1,11 +1,27 @@
+.background-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 1; /* Very transparent */
+}
+
 .landing-page {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #f0f2f5;
   width: 100%;
+  padding: 40rpx;
 }
 
 .welcome-text {

@@ -2,11 +2,12 @@ const Toastify = require('../../utils/toast');  // Adjust path based on your fol
 
 Page({
   data: {
-    meter: {},  // Store the full meter object
+    meter: {},
     amount: '',
-    tariff: '',  // Store the tariff value
+    tariff: '',
     billAmount: '',
-    unitsBought: '',  // Store the number of units bought
+    unitsBought: '',
+    showBuyButton: true  // <-- Add this flag
   },
 
   onLoad(options) {
@@ -79,111 +80,160 @@ Page({
     }
   },
 
+
+  
+
+
+
   makePayBillPayment() {
     const { amount, unitsBought } = this.data;
+    this.setData({ showBuyButton: false });
   
     if (!amount || isNaN(amount) || Number(amount) <= 0) {
-      // Use Toastify for the validation error
       Toastify({
-        text: 'Please enter a valid amount', // Error message
+        text: 'Please enter a valid amount',
         duration: 3000,
-        gravity: "top", // Positioning of the toast
-        position: "center", // Alignment of the toast (center)
-        type: "error", // Type set to 'error'
-        backgroundColor: "#FF6347" // Red background for error
+        gravity: "top",
+        position: "center",
+        type: "error",
+        backgroundColor: "#FF6347"
       });
+
+      // Only show the button again if not navigating away
+      setTimeout(() => {
+        this.setData({ showBuyButton: true });
+      }, 3100);  // wait for second toast to end
       return;
     }
   
-    // Simulating payment
     try {
       my.call(
         'payBill',
         {
-          businessID: '888880',
+          businessID: '1112223',
           billReference: '92110090880',
           amount,
           currency: 'KES',
           reason: `Electricity bill for ${unitsBought} units`,
         },
         (res) => {
-          console.log('Payment success:', res);
-          // Use Toastify for the success message after payment
-          Toastify({
-            text: 'Payment successful!', // Success message
-            duration: 3000,
-            gravity: "top", // Positioning of the toast
-            position: "center", // Alignment of the toast (center)
-            type: "success", // Type set to 'success'
-            backgroundColor: "#4CAF50" // Green background for success
-          });
-  
-          // Update meter units after payment and store it
-          const rawUnits = Number(this.data.meter.units) + Number(unitsBought);
-          const roundedUnits = Math.ceil(rawUnits * 100) / 100;
+          // Check that success response has transactionId
+          if (res.transactionId) {
+            console.log('Payment success:', res);
+            
+            Toastify({
+              text: 'Payment successful!',
+              duration: 3000,
+              gravity: "top",
+              position: "center",
+              type: "success",
+              backgroundColor: "#4CAF50"
+            });
 
-          const updatedMeter = {
-            id: this.data.meter.id,
-            units: roundedUnits  // Rounded up to 2 decimal places
-          };
+            setTimeout(() => {
+              Toastify({
+                text: res.transactionId || '',
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                type: "success",
+                backgroundColor: "#FF6347"
+              });
 
-          console.log("New units:", updatedMeter.units); // Log to confirm
-          console.log("Saving updated meter:", updatedMeter); // Log to confirm
+
+
+            }, 2200);
   
-          // Get the existing meters from storage
-          const storedMeters = my.getStorageSync({ key: 'meters' }).data || [];
-          console.log('Stored Meters:', storedMeters);  // Log to see what's in storage
+            // Update units and store
+            const rawUnits = Number(this.data.meter.units) + Number(unitsBought);
+            const roundedUnits = Math.ceil(rawUnits * 100) / 100;
   
-          console.log(updatedMeter.id)
+            const updatedMeter = {
+              id: this.data.meter.id,
+              units: roundedUnits
+            };
   
-          // Find the meter in the stored list and update it
-          const updatedMeters = storedMeters.map(meter => {
-            if (String(meter.id) === String(updatedMeter.id)) {  // Ensure both IDs are strings for comparison
-              console.log(`Updating meter with id ${updatedMeter.id}`);  // Log when a meter is found
-              return { ...meter, units: updatedMeter.units };  // Update the units
-            }
-            return meter;
-          });
+            const storedMeters = my.getStorageSync({ key: 'meters' }).data || [];
+            const updatedMeters = storedMeters.map(meter => {
+              if (String(meter.id) === String(updatedMeter.id)) {
+                return { ...meter, units: updatedMeter.units };
+              }
+              return meter;
+            });
   
-          // Log the updated list
-          console.log('Updated Meters:', updatedMeters);
+            my.setStorageSync({ key: 'meters', data: updatedMeters });
   
-          // Save the updated meters list back to storage
-          my.setStorageSync({ key: 'meters', data: updatedMeters });
-  
-          // Verify if the storage update was successful
-          const updatedStoredMeters = my.getStorageSync({ key: 'meters' }).data || [];
-          console.log('Updated Meters from Storage:', updatedStoredMeters);  // Log to check the updated meters
+            setTimeout(() => {
+              my.navigateBack();
+            }, 3000);
+          } else {
+            console.log('Unexpected response format:', res);
           
-          // Delay navigation to allow the toast to show
-          setTimeout(() => {
-            my.navigateBack();
-          }, 3000); // 3000 ms (same duration as toast) to allow toast to fully show
+            // First toast
+            Toastify({
+              text: 'Payment failed',
+              duration: 2000,
+              gravity: "top",
+              position: "center",
+              type: "error",
+              backgroundColor: "#FF6347"
+            });
+          
+            // Second toast (with delay)
+            setTimeout(() => {
+              Toastify({
+                text: res.errorMessage || 'Unknown error occurred',
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                type: "error",
+                backgroundColor: "#FF6347"
+              });
+
+              // Only show the button again if not navigating away
+              setTimeout(() => {
+                this.setData({ showBuyButton: true });
+              }, 3100);  // wait for second toast to end
+
+            }, 2200);
+          }
+          
         },
         (res) => {
           console.log('Payment error:', res);
-          // Use Toastify for the payment failure
           Toastify({
-            text: 'Payment failed', // Error message
+            text: res.errorMessage || 'Payment failed',
             duration: 3000,
-            gravity: "top", // Positioning of the toast
-            position: "center", // Alignment of the toast (center)
-            type: "error", // Type set to 'error'
-            backgroundColor: "#FF6347" // Red background for error
+            gravity: "top",
+            position: "center",
+            type: "error",
+            backgroundColor: "#FF6347"
           });
+
+            // Only show the button again if not navigating away
+            setTimeout(() => {
+              this.setData({ showBuyButton: true });
+            }, 3100);  // wait for second toast to end
+
         }
       );
     } catch (error) {
       console.log('Error:', error);
-      // Use Toastify for the unexpected error
       Toastify({
-        text: 'An error occurred', // Error message
+        text: 'An error occurred',
         duration: 3000,
-        gravity: "top", // Positioning of the toast
-        position: "center", // Alignment of the toast (center)
-        type: "error", // Type set to 'error'
-        backgroundColor: "#FF6347" // Red background for error
+        gravity: "top",
+        position: "center",
+        type: "error",
+        backgroundColor: "#FF6347"
       });
+
+      // Only show the button again if not navigating away
+      setTimeout(() => {
+        this.setData({ showBuyButton: true });
+      }, 3100);  // wait for second toast to end
+
     }
   }
+  
 });

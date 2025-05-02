@@ -2,11 +2,11 @@
   <!-- Bill Summary Card -->
   <view class="consumption-card">
     <view style="font-size: 32rpx; font-weight: bold; margin-bottom: 16rpx; color: #333;">
-      Electricity Bill Summary
+      {{meter.name}} - Summary
     </view>
-    <view style="margin-bottom: 12rpx; font-size: 28rpx; color: #444;">
+    <!-- <view style="margin-bottom: 12rpx; font-size: 28rpx; color: #444;">
       <text>Current Month Bill: </text><text style="font-weight: bold; color: #108ee9;">KES {{billAmount}}</text>
-    </view>
+    </view> -->
     <view style="margin-bottom: 12rpx; font-size: 26rpx; color: #666;">
       <text>Current Units: </text><text style="font-weight: bold;">{{meter.units}} kWh</text>
     </view>
@@ -29,7 +29,7 @@
   </view>
 
   <!-- Submit Button -->
-  <button onTap="makePayBillPayment">
-    Pay Bill
+  <button onTap="makePayBillPayment" a:if="{{showBuyButton}}">
+    Buy Units
   </button>
 </view>

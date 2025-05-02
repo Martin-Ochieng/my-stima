@@ -1,35 +1,32 @@
 const Toastify = function(options) {
   const {
-    text = '', // Toast text
-    duration = 3000, // Duration for the toast (in milliseconds)
-    gravity = 'top', // Position (top or bottom)
-    position = 'center', // Position (left, center, or right)
-    type = 'success', // Type of toast (success, error, etc.)
+    text = '',
+    duration = 3000,
+    gravity = 'top',
+    position = 'center',
+    type = 'success',
   } = options;
 
-  // Define background colors for different types
-  let backgroundColor;
+  let toastType = 'success'; // Alipay icon type
   switch (type) {
     case 'success':
-      backgroundColor = '#4CAF50'; // Green for success
+      toastType = 'success'; // ✅
       break;
     case 'error':
-      backgroundColor = '#F44336'; // Red for error
+      toastType = 'fail';    // ❌
       break;
     case 'info':
-      backgroundColor = '#2196F3'; // Blue for info
+      toastType = 'none';    // ℹ️ (text only)
       break;
     default:
-      backgroundColor = '#4CAF50'; // Default to green if no type is provided
+      toastType = 'success';
   }
 
-  // Using Alipay's native toast instead of DOM manipulation
   my.showToast({
-    type: 'success',  // type of toast
+    type: toastType,
     content: text,
-    duration: duration, // Duration of the toast
-    backgroundColor: backgroundColor, // Dynamic background color based on type
-    success: function() {
+    duration: duration,
+    success: function () {
       console.log('Toast shown successfully');
     }
   });
